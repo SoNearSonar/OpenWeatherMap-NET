@@ -58,7 +58,7 @@ namespace OpenWeatherMap.Web.Models
         public List<Weather> Weather { get; set; }
 
         [JsonPropertyName("clouds")]
-        public double Clouds { get; set; }
+        public int CloudCoverage { get; set; }
 
         [JsonPropertyName("pop")]
         public double Pop { get; set; }

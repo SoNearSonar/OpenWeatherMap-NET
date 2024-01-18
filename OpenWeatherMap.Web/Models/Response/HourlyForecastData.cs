@@ -26,7 +26,7 @@ namespace OpenWeatherMap.Web.Models
         public double UVIndex { get; set; }
 
         [JsonPropertyName("clouds")]
-        public double Clouds { get; set; }
+        public int CloudCoverage { get; set; }
 
         [JsonPropertyName("wind_speed")]
         public double WindSpeed { get; set; }
