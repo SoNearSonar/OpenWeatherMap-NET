@@ -5,23 +5,23 @@ namespace OpenWeatherMap.Web.Models
     public class DailyForecastData : IGeneralForecastData, ISpecificForecastData
     {
         [JsonPropertyName("dt")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime DateTime { get; set; } = default!;
 
         [JsonPropertyName("sunrise")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime Sunrise { get; set; } = default!;
 
         [JsonPropertyName("sunset")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime Sunset { get; set; } = default!;
 
         [JsonPropertyName("moonrise")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime Moonrise { get; set; } = default!;
 
         [JsonPropertyName("moonset")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime MoonSet { get; set; } = default!;
 
         [JsonPropertyName("moon_phase")]
@@ -31,10 +31,10 @@ namespace OpenWeatherMap.Web.Models
         public string Summary { get; set; } = default!;
 
         [JsonPropertyName("temp")]
-        public DetailedTemperature Temperature { get; set; } = default!;
+        public WeatherTemperature Temperature { get; set; } = default!;
 
         [JsonPropertyName("feels_like")]
-        public DetailedFeelsLike FeelsLike { get; set; } = default!;
+        public WeatherFeelsLike FeelsLike { get; set; } = default!;
 
         [JsonPropertyName("pressure")]
         public int Pressure { get; set; }

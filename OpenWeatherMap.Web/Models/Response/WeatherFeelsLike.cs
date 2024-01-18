@@ -2,7 +2,7 @@
 
 namespace OpenWeatherMap.Web.Models
 {
-    public class DetailedFeelsLike : IDetailedItem
+    public class WeatherFeelsLike : IDetailedItem
     {
         [JsonPropertyName("day")]
         public double Day { get; set; }

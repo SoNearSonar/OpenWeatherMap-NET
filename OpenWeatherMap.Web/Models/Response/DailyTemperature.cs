@@ -2,25 +2,24 @@
 
 namespace OpenWeatherMap.Web.Models
 {
-    public class DetailedTemperature : IDetailedItem
+    public class DailyTemperature
     {
-        [JsonPropertyName("day")]
-        public double Day { get; set; }
-
         [JsonPropertyName("min")]
         public double Min { get; set; }
 
         [JsonPropertyName("max")]
         public double Max { get; set; }
 
+        [JsonPropertyName("afternoon")]
+        public double Afternoon { get; set; }
+
         [JsonPropertyName("night")]
         public double Night { get; set; }
 
-        [JsonPropertyName("eve")]
+        [JsonPropertyName("evening")]
         public double Eve { get; set; }
 
-        [JsonPropertyName("morn")]
+        [JsonPropertyName("morning")]
         public double Morning { get; set; }
-
     }
 }

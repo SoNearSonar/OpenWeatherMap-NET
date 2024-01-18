@@ -5,15 +5,15 @@ namespace OpenWeatherMap.Web.Models
     public class CurrentForecastData : IGeneralForecastData, ISpecificForecastData
     {
         [JsonPropertyName("dt")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime DateTime { get; set; } = default!;
 
         [JsonPropertyName("sunrise")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime Sunrise { get; set; } = default!;
 
         [JsonPropertyName("sunset")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime Sunset { get; set; } = default!;
 
         [JsonPropertyName("temp")]

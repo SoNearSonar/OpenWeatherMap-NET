@@ -11,11 +11,11 @@ namespace OpenWeatherMap.Web.Models
         public string Event { get; set; } = default!;
 
         [JsonPropertyName("start")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime Started { get; set; } = default!;
 
         [JsonPropertyName("end")]
-        [JsonConverter(typeof(Converters.DateTimeConverter))]
+        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
         public DateTime Ended { get; set; } = default!;
 
         [JsonPropertyName("description")]
