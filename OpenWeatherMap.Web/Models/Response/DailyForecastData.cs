@@ -6,35 +6,35 @@ namespace OpenWeatherMap.Web.Models
     {
         [JsonPropertyName("dt")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime DateTime { get; set; }
+        public DateTime DateTime { get; set; } = default!;
 
         [JsonPropertyName("sunrise")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime Sunrise { get; set; }
+        public DateTime Sunrise { get; set; } = default!;
 
         [JsonPropertyName("sunset")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime Sunset { get; set; }
+        public DateTime Sunset { get; set; } = default!;
 
         [JsonPropertyName("moonrise")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime Moonrise { get; set; }
+        public DateTime Moonrise { get; set; } = default!;
 
         [JsonPropertyName("moonset")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime MoonSet { get; set; }
+        public DateTime MoonSet { get; set; } = default!;
 
         [JsonPropertyName("moon_phase")]
         public double MoonPhase { get; set; }
 
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }
+        public string Summary { get; set; } = default!;
 
         [JsonPropertyName("temp")]
-        public DetailedTemperature Temperature { get; set; }
+        public DetailedTemperature Temperature { get; set; } = default!;
 
         [JsonPropertyName("feels_like")]
-        public DetailedFeelsLike FeelsLike { get; set; }
+        public DetailedFeelsLike FeelsLike { get; set; } = default!;
 
         [JsonPropertyName("pressure")]
         public int Pressure { get; set; }
@@ -55,7 +55,7 @@ namespace OpenWeatherMap.Web.Models
         public double WindGust { get; set; }
 
         [JsonPropertyName("weather")]
-        public List<Weather> Weather { get; set; }
+        public List<Weather> Weather { get; set; } = default!;
 
         [JsonPropertyName("clouds")]
         public int CloudCoverage { get; set; }

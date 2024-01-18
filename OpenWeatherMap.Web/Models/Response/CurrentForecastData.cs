@@ -6,15 +6,15 @@ namespace OpenWeatherMap.Web.Models
     {
         [JsonPropertyName("dt")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime DateTime { get; set; }
+        public DateTime DateTime { get; set; } = default!;
 
         [JsonPropertyName("sunrise")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime Sunrise { get; set; }
+        public DateTime Sunrise { get; set; } = default!;
 
         [JsonPropertyName("sunset")]
         [JsonConverter(typeof(Converters.DateTimeConverter))]
-        public DateTime Sunset { get; set; }
+        public DateTime Sunset { get; set; } = default!;
 
         [JsonPropertyName("temp")]
         public double Temperature { get; set; }
@@ -47,9 +47,9 @@ namespace OpenWeatherMap.Web.Models
         public int WindDegrees { get; set; }
 
         [JsonPropertyName("weather")]
-        public List<Weather> Weather { get; set; }
+        public List<Weather> Weather { get; set; } = default!;
 
         [JsonPropertyName("rain")]
-        public Rain Rain { get; set; }
+        public Rain Rain { get; set; } = default!;
     }
 }
