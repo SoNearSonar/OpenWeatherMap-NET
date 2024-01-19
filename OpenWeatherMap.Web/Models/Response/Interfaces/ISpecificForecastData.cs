@@ -10,6 +10,7 @@
         public int CloudCoverage { get; set; }
         public double WindSpeed { get; set; }
         public int WindDegrees { get; set; }
+        public double WindGust { get; set; }
         public List<Weather> Weather { get; set; }
     }
 }

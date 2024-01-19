@@ -35,12 +35,18 @@ namespace OpenWeatherMap.Web.Models
         public int WindDegrees { get; set; }
 
         [JsonPropertyName("wind_gust")]
-        public double WindGust { get; set; }
+        public double WindGust { get; set; } = default!;
 
         [JsonPropertyName("weather")]
         public List<Weather> Weather { get; set; } = default!;
 
         [JsonPropertyName("pop")]
         public double Pop { get; set; }
+
+        [JsonPropertyName("rain")]
+        public Rain Rain { get; set; } = default!;
+
+        [JsonPropertyName("snow")]
+        public Snow Snow { get; set; } = default!;
     }
 }

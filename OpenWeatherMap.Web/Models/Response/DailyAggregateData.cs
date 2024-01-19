@@ -26,6 +26,9 @@ namespace OpenWeatherMap.Web.Models
         [JsonPropertyName("humidity")]
         public Humidity Humidity { get; set; } = default!;
 
+        [JsonPropertyName("precipitation")]
+        public Precipitation Precipitation { get; set; } = default!;
+
         [JsonPropertyName("temperature")]
         public DailyTemperature Temperature { get; set; } = default!;
 
