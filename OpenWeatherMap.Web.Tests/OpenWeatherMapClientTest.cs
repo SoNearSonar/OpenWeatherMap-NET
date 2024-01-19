@@ -112,5 +112,53 @@ namespace OpenWeatherMap.Web.Tests
                 Assert.IsInstanceOfType(agEx.InnerException, typeof(HttpRequestException));
             }
         }
+
+        [TestMethod]
+        public void TestGetWeatherDataForDate_ValidApiKey_MinimalSettings_ReturnsWeatherData()
+        {
+            var owmClient = new OpenWeatherMapClient(_apiKey);
+
+            var data = owmClient.GetWeatherDataForDate(36.16, 139.11, DateTime.Now).Result;
+
+            Assert.IsNotNull(data);
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(data.Timezone));
+            Assert.IsNotNull(data.Current);
+            Assert.IsTrue(data.Current[0].UVIndex >= 0);
+            Assert.IsTrue(data.Current[0].CloudCoverage >= 0);
+            Assert.IsTrue(data.Latitude == 36.16);
+            Assert.IsTrue(data.Longitude == 139.11);
+        }
+
+        [TestMethod]
+        public void TestGetWeatherDataForDate_ValidApiKey_AddedSettings_ReturnsWeatherData()
+        {
+            var owmClient = new OpenWeatherMapClient(_apiKey);
+
+            var data = owmClient.GetWeatherDataForDate(36.16, 139.11, DateTime.Now, UnitsOfMeasurement.Metric, DataLanguage.Japanese).Result;
+
+            Assert.IsNotNull(data);
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(data.Timezone));
+            Assert.IsNotNull(data.Current);
+            Assert.IsTrue(data.Current[0].UVIndex >= 0);
+            Assert.IsTrue(data.Current[0].CloudCoverage >= 0);
+            Assert.IsTrue(data.Latitude == 36.16);
+            Assert.IsTrue(data.Longitude == 139.11);
+        }
+
+        [TestMethod]
+        public void TestGetWeatherDataForDate_InvlidApiKey_ReturnsError()
+        {
+            var owmClient = new OpenWeatherMapClient("");
+
+            try
+            {
+                var data = owmClient.GetWeatherDataForDate(36.16, 139.11, DateTime.Now).Result;
+                Assert.Fail("Test case should not go here");
+            }
+            catch (AggregateException agEx)
+            {
+                Assert.IsInstanceOfType(agEx.InnerException, typeof(HttpRequestException));
+            }
+        }
     }
 }

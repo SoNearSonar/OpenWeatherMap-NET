@@ -34,6 +34,20 @@ namespace OpenWeatherMap.Web
             throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
         }
 
+        public async Task<DateWeatherData> GetWeatherDataForDate(double latitude, double longitude, DateTime date, UnitsOfMeasurement unitsOfMeasurement = UnitsOfMeasurement.Standard, DataLanguage language = DataLanguage.English)
+        {
+            string query = GetWeatherQueryForTimeFromData(latitude, longitude, date, unitsOfMeasurement, language);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<DateWeatherData>(response);
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
         public async Task<DailyAggregateData> GetDailyAggregateData(double latitude, double longitude, DateTime date, string timezone = "", UnitsOfMeasurement unitsOfMeasurement = UnitsOfMeasurement.Standard, DataLanguage language = DataLanguage.English)
         {
             string query = GetDailyAggregateQueryFromData(latitude, longitude, date, timezone, unitsOfMeasurement, language);
@@ -81,6 +95,28 @@ namespace OpenWeatherMap.Web
 
                 sb.Remove(sb.Length - 1, 1);
             }
+
+            return sb.ToString();
+        }
+
+        private string GetWeatherQueryForTimeFromData(double latitude, double longitude, DateTime date, UnitsOfMeasurement unitsOfMeasurement, DataLanguage language)
+        {
+            StringBuilder sb = new StringBuilder(_url);
+            sb.Append("/timemachine");
+            sb.Append("?lat=");
+            sb.Append(latitude);
+            sb.Append("&lon=");
+            sb.Append(longitude);
+            sb.Append("&appid=");
+            sb.Append(_apiKey);
+            sb.Append("&units=");
+            sb.Append(unitsOfMeasurement.GetEnumMemberValue().ToLowerInvariant());
+            sb.Append("&lang=");
+            sb.Append(language.GetEnumMemberValue().ToLowerInvariant());
+            sb.Append("&dt=");
+
+            long unixTime = ((DateTimeOffset)date).ToUnixTimeSeconds();
+            sb.Append(unixTime);
 
             return sb.ToString();
         }
