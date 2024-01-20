@@ -9,6 +9,8 @@ namespace OpenWeatherMap.Web
     {
         private readonly static string _oneCallUrl = "https://api.openweathermap.org/data/3.0/onecall";
         private readonly static string _airPollutionUrl = "http://api.openweathermap.org/data/2.5/air_pollution";
+
+
         private readonly string _apiKey = string.Empty;
 
         private static HttpClient _httpClient;
@@ -109,7 +111,7 @@ namespace OpenWeatherMap.Web
             throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
         }
 
-        internal T DeserializeObject<T>(string json)
+        private T DeserializeObject<T>(string json)
         {
             JsonSerializerOptions options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
             options.Converters.Add(new DateTimeUnixConverter());

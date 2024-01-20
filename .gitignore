@@ -26,3 +26,7 @@ OpenWeatherMap.Web/obj/Debug/net6.0/
 OpenWeatherMap.Web/obj/Debug/net7.0/
 
 OpenWeatherMap.Web/obj/
+
+OpenWeatherMap.Web.Tests/bin/Debug/net8.0/
+
+OpenWeatherMap.Web/bin/Debug/net8.0/
