@@ -113,5 +113,17 @@ namespace OpenWeatherMap.Web.Utilities
 
             return sb.ToString();
         }
+
+        internal static string GetCoordinatesFromLocationData(string _url, string apiKey, string location)
+        {
+            StringBuilder sb = new StringBuilder(_url);
+            sb.Append("?q=");
+            sb.Append(location);
+            sb.Append("&limit=1");
+            sb.Append("&appid=");
+            sb.Append(apiKey);
+
+            return sb.ToString();
+        }
     }
 }

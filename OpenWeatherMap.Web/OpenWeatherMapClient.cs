@@ -9,6 +9,7 @@ namespace OpenWeatherMap.Web
     {
         private readonly static string _oneCallUrl = "https://api.openweathermap.org/data/3.0/onecall";
         private readonly static string _airPollutionUrl = "http://api.openweathermap.org/data/2.5/air_pollution";
+        private readonly static string _geocodingUrl = "http://api.openweathermap.org/geo/1.0";
 
 
         private readonly string _apiKey = string.Empty;
@@ -37,6 +38,30 @@ namespace OpenWeatherMap.Web
             throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
         }
 
+        public async Task<WeatherData> GetWeatherData(string location, ExcludeData[] excludedData = null, UnitsOfMeasurement unitsOfMeasurement = UnitsOfMeasurement.Standard, DataLanguage language = DataLanguage.English)
+        {
+            Coordinates coords;
+            try
+            {
+                coords = await GetCoordinatesFromLocation(location);
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
+
+            string query = QueryUtility.GetWeatherQueryFromData(_oneCallUrl, _apiKey, coords.Latitude, coords.Longitude, excludedData, unitsOfMeasurement, language);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<WeatherData>(response);
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
         public async Task<DateWeatherData> GetWeatherDataForDate(double latitude, double longitude, DateTime date, UnitsOfMeasurement unitsOfMeasurement = UnitsOfMeasurement.Standard, DataLanguage language = DataLanguage.English)
         {
             string urlPath = _oneCallUrl + "/timemachine";
@@ -52,10 +77,60 @@ namespace OpenWeatherMap.Web
             throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
         }
 
+        public async Task<DateWeatherData> GetWeatherDataForDate(string location, DateTime date, UnitsOfMeasurement unitsOfMeasurement = UnitsOfMeasurement.Standard, DataLanguage language = DataLanguage.English)
+        {
+            Coordinates coords;
+            try
+            {
+                coords = await GetCoordinatesFromLocation(location);
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
+
+            string urlPath = _oneCallUrl + "/timemachine";
+            string query = QueryUtility.GetWeatherQueryForTimeFromData(urlPath, _apiKey, coords.Latitude, coords.Longitude, date, unitsOfMeasurement, language);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<DateWeatherData>(response);
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
         public async Task<DailyAggregateData> GetDailyAggregateData(double latitude, double longitude, DateTime date, string timezone = "", UnitsOfMeasurement unitsOfMeasurement = UnitsOfMeasurement.Standard, DataLanguage language = DataLanguage.English)
         {
             string urlPath = _oneCallUrl + "/day_summary";
             string query = QueryUtility.GetDailyAggregateQueryFromData(urlPath, _apiKey, latitude, longitude, date, timezone, unitsOfMeasurement, language);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<DailyAggregateData>(response);
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
+        public async Task<DailyAggregateData> GetDailyAggregateData(string location, DateTime date, string timezone = "", UnitsOfMeasurement unitsOfMeasurement = UnitsOfMeasurement.Standard, DataLanguage language = DataLanguage.English)
+        {
+            Coordinates coords;
+            try
+            {
+                coords = await GetCoordinatesFromLocation(location);
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
+
+            string urlPath = _oneCallUrl + "/day_summary";
+            string query = QueryUtility.GetDailyAggregateQueryFromData(urlPath, _apiKey, coords.Latitude, coords.Longitude, date, timezone, unitsOfMeasurement, language);
 
             var message = await _httpClient.GetAsync(query);
             if (message.IsSuccessStatusCode)
@@ -109,6 +184,22 @@ namespace OpenWeatherMap.Web
             }
 
             throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
+        private async Task<Coordinates> GetCoordinatesFromLocation(string location)
+        {
+            string urlPath = _geocodingUrl + "/direct";
+            string query = QueryUtility.GetCoordinatesFromLocationData(urlPath, _apiKey, location);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<List<Coordinates>>(response)[0];
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+
         }
 
         private T DeserializeObject<T>(string json)
