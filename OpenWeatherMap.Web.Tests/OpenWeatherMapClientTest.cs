@@ -124,7 +124,7 @@ namespace OpenWeatherMap.Web.Tests
         {
             var owmClient = new OpenWeatherMapClient(_apiKey);
 
-            var data = owmClient.GetDailyAggregateData(36.16, 139.11, DateTime.Now).Result;
+            var data = owmClient.GetDailyAggregateData(36.16, 139.11, DateTime.Today).Result;
 
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Humidity);
@@ -141,7 +141,7 @@ namespace OpenWeatherMap.Web.Tests
         {
             var owmClient = new OpenWeatherMapClient(_apiKey);
 
-            var data = owmClient.GetWeatherDataForDate(36.16, 139.11, DateTime.Now).Result;
+            var data = owmClient.GetWeatherDataForDate(36.16, 139.11, DateTime.Today).Result;
 
             Assert.IsNotNull(data);
             Assert.IsTrue(!string.IsNullOrWhiteSpace(data.Timezone));
@@ -316,6 +316,23 @@ namespace OpenWeatherMap.Web.Tests
         }
 
         [TestMethod]
+        public void TestGetCurrentAirPollutionData_GivenLocation_ReturnsAirPollutionData()
+        {
+            var ownClient = new OpenWeatherMapClient(_apiKey);
+
+            var data = ownClient.GetCurrentAirPollutionData("Osaka").Result;
+
+            Assert.IsNotNull(data);
+            Assert.IsNotNull(data.Coordinates);
+            Assert.IsNotNull(data.AirPollutionList);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionInfo);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionComponents);
+            Assert.IsTrue(data.Coordinates.Latitude != 0.0);
+            Assert.IsTrue(data.Coordinates.Longitude != 0.0);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionComponents.Ozone >= 0.0);
+        }
+
+        [TestMethod]
         public void TestGetCurrentAirPollutionData_InvlidApiKey_ReturnsError()
         {
             var owmClient = new OpenWeatherMapClient("");
@@ -323,6 +340,22 @@ namespace OpenWeatherMap.Web.Tests
             try
             {
                 var data = owmClient.GetCurrentAirPollutionData(36.16, 139.11).Result;
+                Assert.Fail("Test case should not go here");
+            }
+            catch (AggregateException agEx)
+            {
+                Assert.IsInstanceOfType(agEx.InnerException, typeof(HttpRequestException));
+            }
+        }
+
+        [TestMethod]
+        public void TestGetCurrentAirPollutionData_GivenLocation_InvlidApiKey_ReturnsError()
+        {
+            var owmClient = new OpenWeatherMapClient("");
+
+            try
+            {
+                var data = owmClient.GetCurrentAirPollutionData("Osaka").Result;
                 Assert.Fail("Test case should not go here");
             }
             catch (AggregateException agEx)
@@ -349,6 +382,23 @@ namespace OpenWeatherMap.Web.Tests
         }
 
         [TestMethod]
+        public void TestGetForecastAirPollutionData_GivenLocation_ReturnsAirPollutionData()
+        {
+            var ownClient = new OpenWeatherMapClient(_apiKey);
+
+            var data = ownClient.GetForecastAirPollutionData("Osaka").Result;
+
+            Assert.IsNotNull(data);
+            Assert.IsNotNull(data.Coordinates);
+            Assert.IsNotNull(data.AirPollutionList);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionInfo);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionComponents);
+            Assert.IsTrue(data.Coordinates.Latitude != 0.0);
+            Assert.IsTrue(data.Coordinates.Longitude != 0.0);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionComponents.Ozone >= 0.0);
+        }
+
+        [TestMethod]
         public void TestGetForecastAirPollutionData_InvlidApiKey_ReturnsError()
         {
             var owmClient = new OpenWeatherMapClient("");
@@ -356,6 +406,22 @@ namespace OpenWeatherMap.Web.Tests
             try
             {
                 var data = owmClient.GetForecastAirPollutionData(36.16, 139.11).Result;
+                Assert.Fail("Test case should not go here");
+            }
+            catch (AggregateException agEx)
+            {
+                Assert.IsInstanceOfType(agEx.InnerException, typeof(HttpRequestException));
+            }
+        }
+
+        [TestMethod]
+        public void TestGetForecastAirPollutionData_GivenLocation_InvlidApiKey_ReturnsError()
+        {
+            var owmClient = new OpenWeatherMapClient("");
+
+            try
+            {
+                var data = owmClient.GetForecastAirPollutionData("Osaka").Result;
                 Assert.Fail("Test case should not go here");
             }
             catch (AggregateException agEx)
@@ -382,6 +448,23 @@ namespace OpenWeatherMap.Web.Tests
         }
 
         [TestMethod]
+        public void TestGetHistoricalAirPollutionData_GivenLocation_ReturnsAirPollutionData()
+        {
+            var ownClient = new OpenWeatherMapClient(_apiKey);
+
+            var data = ownClient.GetHistoricalAirPollutionData("Osaka", DateTime.Today, DateTime.Now).Result;
+
+            Assert.IsNotNull(data);
+            Assert.IsNotNull(data.Coordinates);
+            Assert.IsNotNull(data.AirPollutionList);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionInfo);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionComponents);
+            Assert.IsTrue(data.Coordinates.Latitude != 0.0);
+            Assert.IsTrue(data.Coordinates.Longitude != 0.0);
+            Assert.IsNotNull(data.AirPollutionList[0].PollutionComponents.Ozone >= 0.0);
+        }
+
+        [TestMethod]
         public void TestGetHistoricalAirPollutionData_InvlidApiKey_ReturnsError()
         {
             var owmClient = new OpenWeatherMapClient("");
@@ -389,6 +472,22 @@ namespace OpenWeatherMap.Web.Tests
             try
             {
                 var data = owmClient.GetHistoricalAirPollutionData(36.16, 139.11, DateTime.Today, DateTime.Now).Result;
+                Assert.Fail("Test case should not go here");
+            }
+            catch (AggregateException agEx)
+            {
+                Assert.IsInstanceOfType(agEx.InnerException, typeof(HttpRequestException));
+            }
+        }
+
+        [TestMethod]
+        public void TestGetHistoricalAirPollutionData_GivenLocation_InvlidApiKey_ReturnsError()
+        {
+            var owmClient = new OpenWeatherMapClient("");
+
+            try
+            {
+                var data = owmClient.GetHistoricalAirPollutionData("Osaka", DateTime.Today, DateTime.Now).Result;
                 Assert.Fail("Test case should not go here");
             }
             catch (AggregateException agEx)

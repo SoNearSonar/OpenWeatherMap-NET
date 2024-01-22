@@ -156,6 +156,30 @@ namespace OpenWeatherMap.Web
             throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
         }
 
+        public async Task<AirPollutionData> GetCurrentAirPollutionData(string location)
+        {
+            Coordinates coords;
+            try
+            {
+                coords = await GetCoordinatesFromLocation(location);
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
+
+            string query = QueryUtility.GetAirPollutionData(_airPollutionUrl, _apiKey, coords.Latitude, coords.Longitude);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<AirPollutionData>(response);
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
         public async Task<AirPollutionData> GetForecastAirPollutionData(double latitude, double longitude)
         {
             string urlPath = _airPollutionUrl + "/forecast";
@@ -171,10 +195,60 @@ namespace OpenWeatherMap.Web
             throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
         }
 
+        public async Task<AirPollutionData> GetForecastAirPollutionData(string location)
+        {
+            Coordinates coords;
+            try
+            {
+                coords = await GetCoordinatesFromLocation(location);
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
+
+            string urlPath = _airPollutionUrl + "/forecast";
+            string query = QueryUtility.GetAirPollutionData(urlPath, _apiKey, coords.Latitude, coords.Longitude);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<AirPollutionData>(response);
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
         public async Task<AirPollutionData> GetHistoricalAirPollutionData(double latitude, double longitude, DateTime start, DateTime end)
         {
             string urlPath = _airPollutionUrl + "/history";
             string query = QueryUtility.GetHistoricalAirPollutionData(urlPath, _apiKey, latitude, longitude, start, end);
+
+            var message = await _httpClient.GetAsync(query);
+            if (message.IsSuccessStatusCode)
+            {
+                string response = await message.Content.ReadAsStringAsync();
+                return DeserializeObject<AirPollutionData>(response);
+            }
+
+            throw new HttpRequestException($"{(int)message.StatusCode} {message.StatusCode} code - Request was not successful");
+        }
+
+        public async Task<AirPollutionData> GetHistoricalAirPollutionData(string location, DateTime start, DateTime end)
+        {
+            Coordinates coords;
+            try
+            {
+                coords = await GetCoordinatesFromLocation(location);
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
+
+            string urlPath = _airPollutionUrl + "/history";
+            string query = QueryUtility.GetHistoricalAirPollutionData(urlPath, _apiKey, coords.Latitude, coords.Longitude, start, end);
 
             var message = await _httpClient.GetAsync(query);
             if (message.IsSuccessStatusCode)
