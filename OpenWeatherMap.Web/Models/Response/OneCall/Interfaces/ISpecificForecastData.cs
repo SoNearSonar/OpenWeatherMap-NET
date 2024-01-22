@@ -1,4 +1,6 @@
-﻿namespace OpenWeatherMap.Web.Models
+﻿using System.Collections.Generic;
+
+namespace OpenWeatherMap.Web.Models
 {
     // Fields shared among specific forecast data types (current, hourly, and daily)
     public interface ISpecificForecastData

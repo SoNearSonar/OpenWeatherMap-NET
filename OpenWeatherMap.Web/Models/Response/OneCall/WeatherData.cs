@@ -1,4 +1,5 @@
 ﻿using OpenWeatherMap.Web.Models;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace OpenWeatherMap.Web

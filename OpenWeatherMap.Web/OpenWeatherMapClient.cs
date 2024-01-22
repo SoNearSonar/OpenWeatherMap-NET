@@ -1,7 +1,11 @@
 ﻿using OpenWeatherMap.Web.Models;
 using OpenWeatherMap.Web.Converters;
 using OpenWeatherMap.Web.Utilities;
+using System;
+using System.Collections.Generic;
 using System.Text.Json;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace OpenWeatherMap.Web
 {

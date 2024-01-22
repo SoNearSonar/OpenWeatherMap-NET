@@ -30,3 +30,11 @@ OpenWeatherMap.Web/obj/
 OpenWeatherMap.Web.Tests/bin/Debug/net8.0/
 
 OpenWeatherMap.Web/bin/Debug/net8.0/
+
+OpenWeatherMap.Web.Tests/bin/Debug/net5.0/
+
+OpenWeatherMap.Web.Tests/bin/Debug/netstandard2.1/
+
+OpenWeatherMap.Web/bin/Debug/netstandard2.1/
+
+OpenWeatherMap.Web/bin/Debug/net5.0/

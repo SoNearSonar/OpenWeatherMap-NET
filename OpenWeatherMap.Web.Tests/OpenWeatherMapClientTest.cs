@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenWeatherMap.Web.Models;
+using System;
+using System.Net.Http;
 
 namespace OpenWeatherMap.Web.Tests
 {
