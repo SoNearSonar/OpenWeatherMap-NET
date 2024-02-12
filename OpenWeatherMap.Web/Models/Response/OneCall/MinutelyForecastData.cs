@@ -1,14 +1,16 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class MinutelyForecastData : IGeneralForecastData
     {
-        [JsonPropertyName("dt")]
-        public DateTime DateTime { get; set; } = default!;
+        [JsonProperty("dt")]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime DateTime { get; set; }
 
-        [JsonPropertyName("precipitation")]
+        [JsonProperty("precipitation")]
         public double Precipitation { get; set; }
     }
 }

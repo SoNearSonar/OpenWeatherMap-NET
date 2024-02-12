@@ -1,10 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class Humidity
     {
-        [JsonPropertyName("afternoon")]
+        [JsonProperty("afternoon")]
         public double Afternoon { get; set; }
     }
 }

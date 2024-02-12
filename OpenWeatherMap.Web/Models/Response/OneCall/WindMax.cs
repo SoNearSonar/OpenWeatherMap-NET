@@ -1,13 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class WindMax
     {
-        [JsonPropertyName("speed")]
+        [JsonProperty("speed")]
         public double Speed { get; set; }
 
-        [JsonPropertyName("direction")]
+        [JsonProperty("direction")]
         public double Direction { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class Precipitation
     {
-        [JsonPropertyName("total")]
+        [JsonProperty("total")]
         public double Total { get; set; }
     }
 }

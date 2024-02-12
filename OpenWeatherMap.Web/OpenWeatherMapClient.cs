@@ -1,11 +1,12 @@
-﻿using OpenWeatherMap.Web.Models;
-using OpenWeatherMap.Web.Converters;
+﻿using Newtonsoft.Json;
+using OpenWeatherMap.Web.Models;
 using OpenWeatherMap.Web.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace OpenWeatherMap.Web
 {
@@ -282,10 +283,11 @@ namespace OpenWeatherMap.Web
 
         private T DeserializeObject<T>(string json)
         {
-            JsonSerializerOptions options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-            options.Converters.Add(new DateTimeUnixConverter());
-            options.Converters.Add(new DateTimeStringConverter());
-            return JsonSerializer.Deserialize<T>(json, options);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters.Add(new StringEnumConverter(new SnakeCaseNamingStrategy()));
+            settings.Converters.Add(new IsoDateTimeConverter());
+            settings.Converters.Add(new UnixDateTimeConverter());
+            return JsonConvert.DeserializeObject<T>(json, settings);
         }
     }
 }

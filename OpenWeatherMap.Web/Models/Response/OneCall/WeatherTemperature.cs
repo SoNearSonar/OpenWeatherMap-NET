@@ -1,25 +1,25 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class WeatherTemperature : IDetailedItem
     {
-        [JsonPropertyName("day")]
+        [JsonProperty("day")]
         public double Day { get; set; }
 
-        [JsonPropertyName("min")]
+        [JsonProperty("min")]
         public double Min { get; set; }
 
-        [JsonPropertyName("max")]
+        [JsonProperty("max")]
         public double Max { get; set; }
 
-        [JsonPropertyName("night")]
+        [JsonProperty("night")]
         public double Night { get; set; }
 
-        [JsonPropertyName("eve")]
+        [JsonProperty("eve")]
         public double Eve { get; set; }
 
-        [JsonPropertyName("morn")]
+        [JsonProperty("morn")]
         public double Morning { get; set; }
 
     }

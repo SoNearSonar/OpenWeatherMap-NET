@@ -1,10 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class Snow
     {
-        [JsonPropertyName("1h")]
+        [JsonProperty("1h")]
         public double OneHour { get; set; }
     }
 }

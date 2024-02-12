@@ -1,40 +1,10 @@
 
-.vs/OpenWeatherMap-NET/DesignTimeBuild/
+.vs/
 
-.vs/OpenWeatherMap-NET/FileContentIndex/
-
-.vs/OpenWeatherMap-NET/v17/
-
-.vs/ProjectEvaluation/
-
-OpenWeatherMap.Web.Tests/bin/Debug/net6.0/
-
-OpenWeatherMap.Web.Tests/bin/Debug/net7.0/
-
-OpenWeatherMap.Web.Tests/obj/Debug/net6.0/
-
-OpenWeatherMap.Web.Tests/obj/Debug/net7.0/
+OpenWeatherMap.Web.Tests/bin/
 
 OpenWeatherMap.Web.Tests/obj/
 
-OpenWeatherMap.Web/bin/Debug/net6.0/
-
-OpenWeatherMap.Web/bin/Debug/net7.0/
-
-OpenWeatherMap.Web/obj/Debug/net6.0/
-
-OpenWeatherMap.Web/obj/Debug/net7.0/
+OpenWeatherMap.Web/bin/
 
 OpenWeatherMap.Web/obj/
-
-OpenWeatherMap.Web.Tests/bin/Debug/net8.0/
-
-OpenWeatherMap.Web/bin/Debug/net8.0/
-
-OpenWeatherMap.Web.Tests/bin/Debug/net5.0/
-
-OpenWeatherMap.Web.Tests/bin/Debug/netstandard2.1/
-
-OpenWeatherMap.Web/bin/Debug/netstandard2.1/
-
-OpenWeatherMap.Web/bin/Debug/net5.0/

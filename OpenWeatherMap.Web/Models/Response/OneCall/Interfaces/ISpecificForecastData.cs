@@ -5,14 +5,14 @@ namespace OpenWeatherMap.Web.Models
     // Fields shared among specific forecast data types (current, hourly, and daily)
     public interface ISpecificForecastData
     {
-        public int Pressure { get; set; }
-        public int Humidity { get; set; }
-        public double DewPoint { get; set; }
-        public double UVIndex { get; set; }
-        public int CloudCoverage { get; set; }
-        public double WindSpeed { get; set; }
-        public int WindDegrees { get; set; }
-        public double WindGust { get; set; }
-        public List<Weather> Weather { get; set; }
+        int Pressure { get; set; }
+        int Humidity { get; set; }
+        double DewPoint { get; set; }
+        double UVIndex { get; set; }
+        int CloudCoverage { get; set; }
+        double WindSpeed { get; set; }
+        int WindDegrees { get; set; }
+        double WindGust { get; set; }
+        List<Weather> Weather { get; set; }
     }
 }

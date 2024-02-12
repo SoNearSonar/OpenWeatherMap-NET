@@ -1,18 +1,19 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class AirPollution
     {
-        [JsonPropertyName("dt")]
-        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
-        public DateTime DateTime { get; set; } = default!;
+        [JsonProperty("dt")]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime DateTime { get; set; }
 
-        [JsonPropertyName("main")]
-        public AirPollutionInfo PollutionInfo { get; set; } = default!;
+        [JsonProperty("main")]
+        public AirPollutionInfo PollutionInfo { get; set; }
 
-        [JsonPropertyName("components")]
-        public AirPollutionComponents PollutionComponents { get; set; } = default!;
+        [JsonProperty("components")]
+        public AirPollutionComponents PollutionComponents { get; set; }
     }
 }

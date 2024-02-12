@@ -1,29 +1,30 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class Alert
     {
-        [JsonPropertyName("sender_name")]
-        public string SenderName { get; set; } = default!;
+        [JsonProperty("sender_name")]
+        public string SenderName { get; set; }
 
-        [JsonPropertyName("event")]
-        public string Event { get; set; } = default!;
+        [JsonProperty("event")]
+        public string Event { get; set; }
 
-        [JsonPropertyName("start")]
-        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
-        public DateTime Started { get; set; } = default!;
+        [JsonProperty("start")]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime Started { get; set; }
 
-        [JsonPropertyName("end")]
-        [JsonConverter(typeof(Converters.DateTimeUnixConverter))]
-        public DateTime Ended { get; set; } = default!;
+        [JsonProperty("end")]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime Ended { get; set; }
 
-        [JsonPropertyName("description")]
-        public string Description { get; set; } = default!;
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
-        [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; } = default!;
+        [JsonProperty("tags")]
+        public List<string> Tags { get; set; }
     }
 }

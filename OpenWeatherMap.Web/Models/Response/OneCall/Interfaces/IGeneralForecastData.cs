@@ -6,6 +6,6 @@ namespace OpenWeatherMap.Web.Models
     // Used to fix an edge case with minutely only having DateTime and Precipitation
     public interface IGeneralForecastData
     {
-        public DateTime DateTime { get; set; }
+        DateTime DateTime { get; set; }
     }
 }

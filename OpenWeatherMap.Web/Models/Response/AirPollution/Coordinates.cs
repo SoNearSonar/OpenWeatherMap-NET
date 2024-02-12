@@ -1,13 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class Coordinates
     {
-        [JsonPropertyName("lat")]
+        [JsonProperty("lat")]
         public double Latitude { get; set; }
 
-        [JsonPropertyName("lon")]
+        [JsonProperty("lon")]
         public double Longitude { get; set; }
     }
 }

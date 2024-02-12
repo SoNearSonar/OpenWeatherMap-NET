@@ -1,10 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class Wind
     {
-        [JsonPropertyName("max")]
-        public WindMax Max { get; set; } = default!;
+        [JsonProperty("max")]
+        public WindMax Max { get; set; }
     }
 }

@@ -1,36 +1,36 @@
-﻿using OpenWeatherMap.Web.Models;
+﻿using Newtonsoft.Json;
+using OpenWeatherMap.Web.Models;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace OpenWeatherMap.Web
 {
     public class WeatherData
     {
-        [JsonPropertyName("lat")]
+        [JsonProperty("lat")]
         public double Latitude { get; set; }
 
-        [JsonPropertyName("lon")]
+        [JsonProperty("lon")]
         public double Longitude { get; set; }
 
-        [JsonPropertyName("timezone")]
-        public string Timezone { get; set; } = default!;
+        [JsonProperty("timezone")]
+        public string Timezone { get; set; }
 
-        [JsonPropertyName("timezone_offset")]
+        [JsonProperty("timezone_offset")]
         public int TimezoneOffset { get; set; }
 
-        [JsonPropertyName("current")]
-        public CurrentForecastData Current { get; set; } = default!;
+        [JsonProperty("current")]
+        public CurrentForecastData Current { get; set; }
 
-        [JsonPropertyName("minutely")]
-        public List<MinutelyForecastData> Minutely { get; set; } = default!;
+        [JsonProperty("minutely")]
+        public List<MinutelyForecastData> Minutely { get; set; }
 
-        [JsonPropertyName("hourly")]
-        public List<HourlyForecastData> Hourly { get; set; } = default!;
+        [JsonProperty("hourly")]
+        public List<HourlyForecastData> Hourly { get; set; }
 
-        [JsonPropertyName("daily")]
-        public List<DailyForecastData> Daily { get; set; } = default!;
+        [JsonProperty("daily")]
+        public List<DailyForecastData> Daily { get; set; }
         
-        [JsonPropertyName("alerts")]
-        public List<Alert> Alerts { get; set; } = default!;
+        [JsonProperty("alerts")]
+        public List<Alert> Alerts { get; set; }
     }
 }

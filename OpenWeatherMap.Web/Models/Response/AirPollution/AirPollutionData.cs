@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class AirPollutionData
     {
-        [JsonPropertyName("coord")]
-        public Coordinates Coordinates { get; set; } = default!;
+        [JsonProperty("coord")]
+        public Coordinates Coordinates { get; set; }
 
-        [JsonPropertyName("list")]
-        public List<AirPollution> AirPollutionList { get; set; } = default!;
+        [JsonProperty("list")]
+        public List<AirPollution> AirPollutionList { get; set; }
     }
 }

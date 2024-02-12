@@ -1,32 +1,32 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class AirPollutionComponents
     {
-        [JsonPropertyName("co")]
-        public double CarbonMonoxide { get; set; } = default!;
+        [JsonProperty("co")]
+        public double CarbonMonoxide { get; set; }
 
-        [JsonPropertyName("no")]
-        public double NitrogenMonoxide { get; set; } = default!;
+        [JsonProperty("no")]
+        public double NitrogenMonoxide { get; set; }
 
-        [JsonPropertyName("no2")]
-        public double NitrogenDioxide { get; set; } = default!;
+        [JsonProperty("no2")]
+        public double NitrogenDioxide { get; set; }
 
-        [JsonPropertyName("o3")]
-        public double Ozone { get; set; } = default!;
+        [JsonProperty("o3")]
+        public double Ozone { get; set; }
 
-        [JsonPropertyName("so2")]
-        public double SulphurDioxide { get; set; } = default!;
+        [JsonProperty("so2")]
+        public double SulphurDioxide { get; set; }
 
-        [JsonPropertyName("pm2_5")]
-        public double FineParticulateMatter { get; set; } = default!;
+        [JsonProperty("pm2_5")]
+        public double FineParticulateMatter { get; set; }
 
-        [JsonPropertyName("pm10")]
-        public double CoarseParticulateMatter { get; set; } = default!;
+        [JsonProperty("pm10")]
+        public double CoarseParticulateMatter { get; set; }
 
-        [JsonPropertyName("nh3")]
-        public double Ammonia { get; set; } = default!;
+        [JsonProperty("nh3")]
+        public double Ammonia { get; set; }
 
     }
 }

@@ -1,24 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace OpenWeatherMap.Web.Models
 {
     // For getting weather data by a specific date (DateTime)
     public class DateWeatherData
     {
-        [JsonPropertyName("lat")]
+        [JsonProperty("lat")]
         public double Latitude { get; set; }
 
-        [JsonPropertyName("lon")]
+        [JsonProperty("lon")]
         public double Longitude { get; set; }
 
-        [JsonPropertyName("timezone")]
-        public string Timezone { get; set; } = default!;
+        [JsonProperty("timezone")]
+        public string Timezone { get; set; }
 
-        [JsonPropertyName("timezone_offset")]
+        [JsonProperty("timezone_offset")]
         public int TimezoneOffset { get; set; }
 
-        [JsonPropertyName("data")]
-        public List<CurrentForecastData> Current { get; set; } = default!;
+        [JsonProperty("data")]
+        public List<CurrentForecastData> Current { get; set; }
     }
 }

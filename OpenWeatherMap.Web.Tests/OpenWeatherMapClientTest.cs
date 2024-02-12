@@ -8,6 +8,7 @@ namespace OpenWeatherMap.Web.Tests
     [TestClass]
     public class OpenWeatherMapClientTest
     {
+        // An API key is required to test methods in this file
         private readonly string _apiKey = "";
 
         [TestMethod]

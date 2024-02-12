@@ -1,54 +1,56 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class HourlyForecastData : IGeneralForecastData, ISpecificForecastData
     {
-        [JsonPropertyName("dt")]
-        public DateTime DateTime { get; set; } = default!;
+        [JsonProperty("dt")]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime DateTime { get; set; }
 
-        [JsonPropertyName("temp")]
+        [JsonProperty("temp")]
         public double Temperature { get; set; }
 
-        [JsonPropertyName("feels_like")]
+        [JsonProperty("feels_like")]
         public double FeelsLike { get; set; }
 
-        [JsonPropertyName("pressure")]
+        [JsonProperty("pressure")]
         public int Pressure { get; set; }
 
-        [JsonPropertyName("humidity")]
+        [JsonProperty("humidity")]
         public int Humidity { get; set; }
 
-        [JsonPropertyName("dew_point")]
+        [JsonProperty("dew_point")]
         public double DewPoint { get; set; }
 
-        [JsonPropertyName("uvi")]
+        [JsonProperty("uvi")]
         public double UVIndex { get; set; }
 
-        [JsonPropertyName("clouds")]
+        [JsonProperty("clouds")]
         public int CloudCoverage { get; set; }
 
-        [JsonPropertyName("wind_speed")]
+        [JsonProperty("wind_speed")]
         public double WindSpeed { get; set; }
 
-        [JsonPropertyName("wind_deg")]
+        [JsonProperty("wind_deg")]
         public int WindDegrees { get; set; }
 
-        [JsonPropertyName("wind_gust")]
-        public double WindGust { get; set; } = default!;
+        [JsonProperty("wind_gust")]
+        public double WindGust { get; set; }
 
-        [JsonPropertyName("weather")]
-        public List<Weather> Weather { get; set; } = default!;
+        [JsonProperty("weather")]
+        public List<Weather> Weather { get; set; }
 
-        [JsonPropertyName("pop")]
+        [JsonProperty("pop")]
         public double Pop { get; set; }
 
-        [JsonPropertyName("rain")]
-        public Rain Rain { get; set; } = default!;
+        [JsonProperty("rain")]
+        public Rain Rain { get; set; }
 
-        [JsonPropertyName("snow")]
-        public Snow Snow { get; set; } = default!;
+        [JsonProperty("snow")]
+        public Snow Snow { get; set; }
     }
 }

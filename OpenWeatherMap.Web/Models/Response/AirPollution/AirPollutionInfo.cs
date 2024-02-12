@@ -1,10 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class AirPollutionInfo
     {
-        [JsonPropertyName("aqi")]
-        public int AirQualityIndex { get; set; } = default!;
+        [JsonProperty("aqi")]
+        public int AirQualityIndex { get; set; }
     }
 }

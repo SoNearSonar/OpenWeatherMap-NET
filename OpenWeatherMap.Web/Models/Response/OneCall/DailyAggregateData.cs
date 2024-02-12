@@ -1,42 +1,43 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class DailyAggregateData
     {
-        [JsonPropertyName("lat")]
+        [JsonProperty("lat")]
         public double Latitude { get; set; }
 
-        [JsonPropertyName("lon")]
+        [JsonProperty("lon")]
         public double Longitude { get; set; }
 
-        [JsonPropertyName("tz")]
-        public string Timezone { get; set; } = default!;
+        [JsonProperty("tz")]
+        public string Timezone { get; set; }
 
-        [JsonPropertyName("date")]
-        [JsonConverter(typeof(Converters.DateTimeStringConverter))]
-        public DateTime Date { get; set; } = default!;
+        [JsonProperty("date")]
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        public DateTime Date { get; set; }
 
-        [JsonPropertyName("units")]
-        public UnitsOfMeasurement UnitsOfMeasurement { get; set; } = default!;
+        [JsonProperty("units")]
+        public UnitsOfMeasurement UnitsOfMeasurement { get; set; }
 
-        [JsonPropertyName("cloud_cover")]
-        public CloudCover CloudCover { get; set; } = default!;
+        [JsonProperty("cloud_cover")]
+        public CloudCover CloudCover { get; set; }
 
-        [JsonPropertyName("humidity")]
-        public Humidity Humidity { get; set; } = default!;
+        [JsonProperty("humidity")]
+        public Humidity Humidity { get; set; }
 
-        [JsonPropertyName("precipitation")]
-        public Precipitation Precipitation { get; set; } = default!;
+        [JsonProperty("precipitation")]
+        public Precipitation Precipitation { get; set; }
 
-        [JsonPropertyName("temperature")]
-        public DailyTemperature Temperature { get; set; } = default!;
+        [JsonProperty("temperature")]
+        public DailyTemperature Temperature { get; set; }
 
-        [JsonPropertyName("pressure")]
-        public Pressure Pressure { get; set; } = default!;
+        [JsonProperty("pressure")]
+        public Pressure Pressure { get; set; }
 
-        [JsonPropertyName("wind")]
-        public Wind Wind { get; set; } = default!;
+        [JsonProperty("wind")]
+        public Wind Wind { get; set; }
     }
 }

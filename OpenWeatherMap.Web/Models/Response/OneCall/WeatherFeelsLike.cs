@@ -1,19 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace OpenWeatherMap.Web.Models
 {
     public class WeatherFeelsLike : IDetailedItem
     {
-        [JsonPropertyName("day")]
+        [JsonProperty("day")]
         public double Day { get; set; }
 
-        [JsonPropertyName("night")]
+        [JsonProperty("night")]
         public double Night { get; set; }
 
-        [JsonPropertyName("eve")]
+        [JsonProperty("eve")]
         public double Eve { get; set; }
 
-        [JsonPropertyName("morn")]
+        [JsonProperty("morn")]
         public double Morning { get; set; }
     }
 }
